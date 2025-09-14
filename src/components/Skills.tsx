@@ -9,8 +9,13 @@ import {
   Server,
   Zap
 } from "lucide-react";
+import { useScrollAnimation, useProgressAnimation, useCountAnimation } from "@/hooks/useScrollAnimation";
 
 const Skills = () => {
+  const titleRef = useScrollAnimation(0.2);
+  const skillsRef = useProgressAnimation();
+  const statsRef = useScrollAnimation(0.3);
+
   const skillCategories = [
     {
       title: "Mobile Development",
@@ -94,24 +99,28 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-16 scroll-reveal">
           <h2 className="section-heading">Technical Skills</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Comprehensive expertise in mobile development technologies and tools
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div ref={skillsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="project-card group">
+            <Card 
+              key={index} 
+              className="project-card group scroll-reveal hover:scale-105 transition-all duration-500"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="p-6">
                 <div className="flex items-center mb-6">
-                  <div className={`p-3 rounded-lg bg-gradient-to-r ${category.color} mr-4`}>
+                  <div className={`p-3 rounded-lg bg-gradient-to-r ${category.color} mr-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
                     <category.icon className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold">{category.title}</h3>
+                  <h3 className="text-lg font-semibold group-hover:text-primary transition-colors duration-300">{category.title}</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -121,10 +130,10 @@ const Skills = () => {
                         <span className="text-sm font-medium">{skill.name}</span>
                         <span className="text-xs text-muted-foreground">{skill.level}%</span>
                       </div>
-                      <div className="w-full bg-muted rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                         <div 
-                          className={`h-2 rounded-full bg-gradient-to-r ${category.color} transition-all duration-1000 ease-out`}
-                          style={{ width: `${skill.level}%` }}
+                          className={`progress-bar h-2 rounded-full bg-gradient-to-r ${category.color} transition-all duration-1000 ease-out w-0`}
+                          style={{ '--progress-width': `${skill.level}%` } as any}
                         ></div>
                       </div>
                     </div>
@@ -149,26 +158,32 @@ const Skills = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-16 grid md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">10+</div>
-            <div className="text-muted-foreground">Apps Deployed</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-secondary mb-2">3</div>
-            <div className="text-muted-foreground">Industry Domains</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-2">2+</div>
-            <div className="text-muted-foreground">Years Experience</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">100%</div>
-            <div className="text-muted-foreground">Client Satisfaction</div>
-          </div>
+        <div ref={statsRef} className="mt-16 grid md:grid-cols-4 gap-8 scroll-reveal">
+          <StatCard number={10} suffix="+" label="Apps Deployed" color="text-primary" />
+          <StatCard number={3} suffix="" label="Industry Domains" color="text-secondary" />
+          <StatCard number={2} suffix="+" label="Years Experience" color="text-accent" />
+          <StatCard number={100} suffix="%" label="Client Satisfaction" color="text-primary" />
         </div>
       </div>
     </section>
+  );
+};
+
+const StatCard = ({ number, suffix, label, color }: { 
+  number: number; 
+  suffix: string; 
+  label: string; 
+  color: string; 
+}) => {
+  const countRef = useCountAnimation(number);
+  
+  return (
+    <div className="text-center group hover:scale-110 transition-all duration-300">
+      <div className={`text-3xl font-bold ${color} mb-2 group-hover:animate-bounce-subtle`}>
+        <span ref={countRef}>0</span>{suffix}
+      </div>
+      <div className="text-muted-foreground group-hover:text-foreground transition-colors">{label}</div>
+    </div>
   );
 };
 

@@ -1,8 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Smartphone } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Projects = () => {
+  const titleRef = useScrollAnimation(0.2);
+  const gridRef = useScrollAnimation(0.1);
+
   const projects = [
     {
       name: "WUZO",
@@ -62,9 +66,9 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-20 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-16 scroll-reveal">
           <h2 className="section-heading">Featured Projects</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A showcase of mobile applications I've built across various industries, 
@@ -72,9 +76,13 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className={`project-card group ${project.featured ? 'ring-2 ring-primary/20' : ''}`}>
+            <Card 
+              key={index} 
+              className={`project-card group scroll-reveal ${project.featured ? 'ring-2 ring-primary/20 animate-pulse-slow' : ''}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="p-6">
                 {project.featured && (
                   <div className="inline-flex items-center bg-gradient-to-r from-primary to-secondary text-primary-foreground text-xs px-2 py-1 rounded-full mb-4">
@@ -84,10 +92,10 @@ const Projects = () => {
                 )}
                 
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-semibold group-hover:text-primary transition-all duration-300 group-hover:scale-105">
                     {project.name}
                   </h3>
-                  <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full">
+                  <span className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                     {project.category}
                   </span>
                 </div>
@@ -107,11 +115,11 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="hover:bg-primary hover:text-primary-foreground"
+                    className="hover:bg-primary hover:text-primary-foreground transform hover:scale-110 transition-all duration-300"
                     asChild
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -123,7 +131,7 @@ const Projects = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="hover:bg-secondary hover:text-secondary-foreground"
+                    className="hover:bg-secondary hover:text-secondary-foreground transform hover:scale-110 transition-all duration-300"
                     asChild
                   >
                     <a href={project.playStore} target="_blank" rel="noopener noreferrer">
@@ -135,7 +143,7 @@ const Projects = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="hover:bg-accent hover:text-accent-foreground"
+                    className="hover:bg-accent hover:text-accent-foreground transform hover:scale-110 transition-all duration-300"
                     asChild
                   >
                     <a href={project.appStore} target="_blank" rel="noopener noreferrer">

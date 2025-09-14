@@ -5,8 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
+  const titleRef = useScrollAnimation(0.2);
+  const contentRef = useScrollAnimation(0.1);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -81,19 +85,19 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
+    <section id="contact" className="py-20 bg-muted/30 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-16 scroll-reveal">
           <h2 className="section-heading">Get In Touch</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Ready to discuss your next mobile app project? Let's create something amazing together!
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
-          <div>
-            <Card className="project-card mb-8">
+          <div className="scroll-reveal-left">
+            <Card className="project-card mb-8 hover:scale-105 transition-all duration-500">
               <div className="p-8">
                 <h3 className="text-2xl font-bold mb-6 text-primary">Let's Connect</h3>
                 <p className="text-muted-foreground mb-8 leading-relaxed">
@@ -104,7 +108,11 @@ const Contact = () => {
 
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-center group">
+                    <div 
+                      key={index} 
+                      className="flex items-center group animate-fade-in-up"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
                       <div className="p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg mr-4 group-hover:from-primary group-hover:to-secondary transition-all duration-300">
                         <info.icon className="h-5 w-5 text-primary group-hover:text-white" />
                       </div>
@@ -157,8 +165,8 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
-            <Card className="project-card">
+          <div className="scroll-reveal-right">
+            <Card className="project-card hover:scale-105 transition-all duration-500">
               <div className="p-8">
                 <h3 className="text-2xl font-bold mb-6 text-primary">Send a Message</h3>
                 
@@ -176,7 +184,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="John Doe"
-                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:scale-105"
                       />
                     </div>
                     <div>
@@ -191,7 +199,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="john@example.com"
-                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
+                        className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:scale-105"
                       />
                     </div>
                   </div>
@@ -208,7 +216,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder="Project Discussion"
-                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:scale-105"
                     />
                   </div>
 
@@ -224,7 +232,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder="Tell me about your project requirements..."
                       rows={6}
-                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
+                      className="transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:scale-105"
                     />
                   </div>
 
