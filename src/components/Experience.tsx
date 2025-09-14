@@ -1,12 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Building, Calendar, MapPin } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Experience = () => {
-  const titleRef = useScrollAnimation(0.2);
-  const timelineRef = useScrollAnimation(0.1);
-
   const experiences = [
     {
       title: "Software Developer",
@@ -62,33 +58,29 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-muted/30 overflow-hidden">
+    <section id="experience" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div ref={titleRef} className="text-center mb-16 scroll-reveal">
+        <div className="text-center mb-16">
           <h2 className="section-heading">Professional Experience</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             My journey as a React Native developer across different companies and roles
           </p>
         </div>
 
-        <div ref={timelineRef} className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent animate-pulse-slow"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent"></div>
             
             {experiences.map((exp, index) => (
-              <div 
-                key={index} 
-                className="timeline-item scroll-reveal"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <Card className="project-card ml-8 group hover:shadow-2xl transition-all duration-500">
+              <div key={index} className="timeline-item">
+                <Card className="project-card ml-8">
                   <div className="p-6">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
-                        <h3 className="text-xl font-bold text-primary mb-1 group-hover:scale-105 transition-transform duration-300">{exp.title}</h3>
-                        <div className="flex items-center text-muted-foreground mb-2 group-hover:text-secondary transition-colors duration-300">
-                          <Building className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                        <h3 className="text-xl font-bold text-primary mb-1">{exp.title}</h3>
+                        <div className="flex items-center text-muted-foreground mb-2">
+                          <Building className="h-4 w-4 mr-2" />
                           <span className="font-medium">{exp.company}</span>
                         </div>
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">

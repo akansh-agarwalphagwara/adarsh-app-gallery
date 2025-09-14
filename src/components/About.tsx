@@ -1,12 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Code, Smartphone, Trophy, Users } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const About = () => {
-  const titleRef = useScrollAnimation(0.2);
-  const contentRef = useScrollAnimation(0.1);
-  const cardsRef = useScrollAnimation(0.1);
-
   const highlights = [
     {
       icon: Code,
@@ -31,9 +26,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/30 overflow-hidden">
+    <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div ref={titleRef} className="text-center mb-16 scroll-reveal">
+        <div className="text-center mb-16">
           <h2 className="section-heading">About Me</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Passionate mobile app developer with a track record of delivering high-quality applications
@@ -41,7 +36,7 @@ const About = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div ref={contentRef} className="scroll-reveal-left">
+          <div>
             <div className="space-y-6">
               <p className="text-lg leading-relaxed">
                 I'm an experienced <span className="text-primary font-semibold">Hybrid Application Developer</span> with 
@@ -85,16 +80,12 @@ const About = () => {
             </div>
           </div>
 
-          <div ref={cardsRef} className="grid md:grid-cols-2 gap-6 scroll-reveal-right">
+          <div className="grid md:grid-cols-2 gap-6">
             {highlights.map((item, index) => (
-              <Card 
-                key={index} 
-                className={`project-card group scroll-reveal animate-stagger-${index + 1}`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+              <Card key={index} className="project-card group">
                 <div className="p-6">
-                  <item.icon className="h-12 w-12 text-primary mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
-                  <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <item.icon className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.description}</p>
                 </div>
               </Card>
