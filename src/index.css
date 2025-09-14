@@ -2,39 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Professional Tech Portfolio Design System - Adarsh Agrawal
+Tech-themed color palette with blue, purple, and white
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 216 29% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 216 29% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 216 29% 16%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Tech Blue Primary */
+    --primary: 220 90% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 220 90% 76%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Tech Purple Secondary */
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 216 16% 96%;
+    --muted-foreground: 216 16% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Tech Accent Purple */
+    --accent: 270 70% 65%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 216 16% 88%;
+    --input: 216 16% 94%;
+    --ring: 220 90% 56%;
+
+    /* Custom Tech Theme Tokens */
+    --hero-bg: 216 50% 4%;
+    --gradient-primary: linear-gradient(135deg, hsl(220 90% 56%), hsl(262 83% 58%));
+    --gradient-secondary: linear-gradient(135deg, hsl(270 70% 65%), hsl(220 90% 76%));
+    --gradient-hero: linear-gradient(135deg, hsl(216 50% 4%), hsl(216 50% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(216 16% 98%));
+    
+    /* Shadows */
+    --shadow-primary: 0 10px 40px hsl(220 90% 56% / 0.2);
+    --shadow-secondary: 0 8px 32px hsl(262 83% 58% / 0.15);
+    --shadow-card: 0 4px 24px hsl(216 16% 16% / 0.08);
+    --shadow-glow: 0 0 40px hsl(220 90% 56% / 0.3);
 
     --radius: 0.5rem;
 
@@ -56,33 +74,45 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 216 50% 4%;
+    --foreground: 0 0% 96%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 216 50% 6%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 216 50% 6%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 220 90% 66%;
+    --primary-foreground: 216 50% 4%;
+    --primary-glow: 220 90% 86%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 262 83% 68%;
+    --secondary-foreground: 216 50% 4%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 216 50% 12%;
+    --muted-foreground: 216 16% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 270 70% 75%;
+    --accent-foreground: 216 50% 4%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 70%;
+    --destructive-foreground: 216 50% 4%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 216 50% 16%;
+    --input: 216 50% 12%;
+    --ring: 220 90% 66%;
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 90% 66%), hsl(262 83% 68%));
+    --gradient-secondary: linear-gradient(135deg, hsl(270 70% 75%), hsl(220 90% 86%));
+    --gradient-hero: linear-gradient(135deg, hsl(216 50% 4%), hsl(216 50% 8%));
+    --gradient-card: linear-gradient(145deg, hsl(216 50% 6%), hsl(216 50% 8%));
+    
+    --shadow-primary: 0 10px 40px hsl(220 90% 66% / 0.3);
+    --shadow-secondary: 0 8px 32px hsl(262 83% 68% / 0.2);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.2);
+    --shadow-glow: 0 0 40px hsl(220 90% 66% / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +130,68 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero button variant */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:shadow-[var(--shadow-primary)] hover:scale-105 hover:shadow-lg;
+  }
+
+  /* Project card styling */
+  .project-card {
+    @apply bg-gradient-to-br from-white to-muted border border-border rounded-xl p-6 transition-all duration-300 hover:shadow-[var(--shadow-card)] hover:scale-[1.02] hover:border-primary/20;
+  }
+
+  /* Skill badge styling */
+  .skill-badge {
+    @apply bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 text-primary px-4 py-2 rounded-full font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-primary-foreground hover:scale-105;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4;
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    @apply relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-to-r after:from-primary after:to-secondary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+
+  /* Timeline item */
+  .timeline-item {
+    @apply relative pl-8 pb-8 before:content-[''] before:absolute before:left-2 before:top-2 before:w-2 before:h-2 before:bg-primary before:rounded-full before:shadow-[var(--shadow-glow)] after:content-[''] after:absolute after:left-[11px] after:top-6 after:w-0.5 after:h-full after:bg-gradient-to-b after:from-primary after:to-transparent;
+  }
+
+  .timeline-item:last-child::after {
+    @apply hidden;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(220 90% 56% / 0.5); }
+    to { box-shadow: 0 0 30px hsl(220 90% 56% / 0.8), 0 0 40px hsl(262 83% 58% / 0.5); }
   }
 }
